@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="format-detection" content="telephone=no"/>
+        <meta name="format-detection" content="email=no"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0" name="viewport">
+        <title>socket test</title>
+        <!--[if lt IE 8]><script src="./json3.min.js"></script><![endif]-->
+        <script src="/socket.io/socket.io.js"></script>
+    </head>
+    <body>
+        
+        <script type="text/javascript" >
+        //http://www.open-open.com/lib/view/open1402479198587.html
+
+        	console.log(io);
+        	var socket = io.connect('ws://localhost:3000');
+			
+			//告诉服务器端有用户登录
+			socket.emit('login', { userid:123});
+			
+			//监听新用户登录
+			socket.on('login', function(o){
+				console.log(o);	
+			});
+			
+			//监听用户退出
+			socket.on('logout', function(o){
+				console.log(o);	
+			});
+			
+        </script>
+
+    </body>
+</html>
