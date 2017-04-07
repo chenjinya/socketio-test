@@ -49,10 +49,19 @@ io.on('connection', function(socket){
     console.log('a user connected');
     
     //监听新用户加入
-    socket.on('login', function(obj){
-        console.log('a user connected');
+    socket.on('rtcmsg', function(obj){
+        console.log('a user message');
+        //向所有客户端广播发布的消息
+        io.emit('rtcmsg', obj);
+        // console.log(obj.username+'说：'+obj.content);
     });
     
+    socket.on('newPeer', function(obj){
+        console.log('a user message');
+        //向所有客户端广播发布的消息
+        io.emit('newPeer', obj);
+        // console.log(obj.username+'说：'+obj.content);
+    });
     //监听用户退出
     socket.on('disconnect', function(){
         console.log('a user disconnect');
